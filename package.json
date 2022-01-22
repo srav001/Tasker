@@ -1,7 +1,7 @@
 {
-    "name": "vue-ionic-template",
+    "name": "To-Do",
     "version": "1.0.0",
-    "description": "A production ready starter template for projects with ionic-vue with linting, formatter etc pre-configured.",
+    "description": "A simple to app in vue 3 with mobile and desktop apps",
     "main": "./src/main.ts",
     "scripts": {
         "dev": "vite",
