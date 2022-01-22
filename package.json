@@ -1,0 +1,59 @@
+{
+    "name": "vue-ionic-template",
+    "version": "1.0.0",
+    "description": "A production ready starter template for projects with ionic-vue with linting, formatter etc pre-configured.",
+    "main": "./src/main.ts",
+    "scripts": {
+        "dev": "vite",
+        "build": "vue-tsc --noEmit && vite build",
+        "preview": "vite preview",
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "setup": "npm i && npx husky install && npx husky add .husky/commit-msg 'npx --no -- commitlint --verbose --edit $1' ",
+        "format": "npx prettier --write --config ./.prettierrc.js src",
+        "lint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore --fix src"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/srav001/vue-ionic-template.git"
+    },
+    "author": "Sravan Suresh",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/srav001/vue-ionic-template/issues"
+    },
+    "homepage": "https://github.com/srav001/vue-ionic-template#readme",
+    "dependencies": {
+        "@capacitor/app": "1.0.7",
+        "@capacitor/core": "3.3.3",
+        "@capacitor/haptics": "1.1.3",
+        "@capacitor/keyboard": "1.2.0",
+        "@capacitor/status-bar": "1.0.6",
+        "@ionic/vue": "^6.0.1",
+        "@ionic/vue-router": "^6.0.1",
+        "bootstrap": "^5.1.3",
+        "pinia": "^2.0.7",
+        "vue": "^3.2.26",
+        "vue-router": "^4.0.12"
+    },
+    "devDependencies": {
+        "@capacitor/cli": "3.3.3",
+        "@commitlint/cli": "^15.0.0",
+        "@commitlint/config-conventional": "^15.0.0",
+        "@types/node": "^17.0.0",
+        "@typescript-eslint/eslint-plugin": "^5.7.0",
+        "@typescript-eslint/parser": "^5.7.0",
+        "@vitejs/plugin-vue": "^2.0.0",
+        "@vue/eslint-config-airbnb": "^6.0.0",
+        "autoprefixer": "^10.4.0",
+        "eslint": "^8.5.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-vue": "^8.2.0",
+        "eslint-plugin-vuejs-accessibility": "^1.1.1",
+        "husky": "^7.0.0",
+        "postcss": "^8.4.5",
+        "prettier": "^2.5.1",
+        "tailwindcss": "^3.0.7",
+        "vite": "^2.7.2",
+        "vue-tsc": "^0.29.8"
+    }
+}
