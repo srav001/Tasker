@@ -12,7 +12,7 @@
             "esnext",
             "dom"
         ],
-        "baseUrl": "./src",
+        "baseUrl": "./src/",
         "paths": {
             "assets/*": ["/assets/*"],
             "components/*": ["/components/*"],

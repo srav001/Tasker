@@ -14,7 +14,7 @@ const routes: Array<RouteRecordRaw> = [
     },
     {
         path: '/about',
-        component: () => import('../views/About.vue'),
+        component: () => import('../components/AddTask.vue'),
     },
 ];
 
