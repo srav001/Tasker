@@ -26,8 +26,6 @@ import { IonButton, IonModal } from '@ionic/vue';
 
 import BaseView from 'core/BaseView.vue';
 
-import AboutComponent from 'components/about/AboutComponent.vue';
-
 const modalIsOpen = ref(false);
 const showModal = () => {
     modalIsOpen.value = true;

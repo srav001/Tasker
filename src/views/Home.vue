@@ -5,48 +5,46 @@ import { reactive } from 'vue';
 
 import { storeToRefs } from 'pinia';
 
-import { IonButton, IonCard, IonCardHeader, IonCardSubtitle, IonCardContent } from '@ionic/vue';
-
+import { IonFab, IonFabButton, IonButton } from "@ionic/vue";
 import BaseView from 'core/BaseView.vue';
 
+import Tasks from 'components/Tasks.vue';
 // eslint-disable-next-line
-import useStore from '../stores/main';
-
+import useStore from 'stores/main';
 const mainStore = useStore();
+const {  } = storeToRefs(mainStore);
 
-const { welcomeText } = storeToRefs(mainStore);
-// If you do not want to use 'welcomeText.value', wrap it in a reactive object.
-// It can be easier for people migrating from vue 2.
 const data = reactive({
-    introductionText: welcomeText.value,
+    tasks: mainStore.getTasks
 });
 
-if (data.introductionText === welcomeText.value) console.log(data.introductionText);
 </script>
 
 <template>
     <base-view id="home-page">
-        <template #default-view-title>
-            <div class="text-center">Home Page</div>
-        </template>
         <template #default-view-body>
-            <div class="row welcome-page">
-                <ion-card class="col-xl-4 col-lg-5 col-md-5 col-sm-6 col-12">
-                    <ion-card-header>
-                        <ion-card-subtitle>First Page</ion-card-subtitle>
-                        <ion-card-title>Welcome Home</ion-card-title>
-                    </ion-card-header>
-
-                    <ion-card-content class="text-center">
-                        <p>{{ welcomeText }}</p>
-                        <ion-button class="pt-1" router-link="/about">Click Me</ion-button>
-                    </ion-card-content>
-                </ion-card>
+            <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+                <ion-fab-button color="dark">
+                    <i class="material-icons">add</i>
+                </ion-fab-button>
+            </ion-fab>
+            <div class="header">
+                <div class="text-left pl-8">
+                    <b style="font-size: 3rem;">To-Do</b>
+                </div>
+                <ion-button mode="ios" shape="round">
+                    <i class="material-icons">done_all</i>
+                    <span class="hidden md:inline md:pl-2">All Done</span>
+                </ion-button>
+            </div>
+            <div class="row py-2 px-2">
+                <div
+                    v-for="(task, taskIndex) in data.tasks"
+                    :key="taskIndex"
+                    class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                    <tasks :key="taskIndex" :sl="taskIndex + 1" :task="task"></tasks>
+                </div>
             </div>
         </template>
     </base-view>
 </template>
-
-<style lang="postcss">
-@import '../assets/views.css';
-</style>

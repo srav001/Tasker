@@ -1,0 +1,20 @@
+.header {
+    @apply flex justify-between items-center pt-9 pr-4;
+}
+
+.high {
+    @apply border-red-500;
+}
+.medium {
+    @apply border-yellow-500;
+}
+.low {
+    @apply border-blue-500;
+}
+
+.task-card {
+    @apply p-2 shadow-lg rounded-2xl border-l-2;
+}
+.task-card-body {
+    @apply pt-1 pb-2;
+}

@@ -7,19 +7,23 @@ module.exports = {
         'plugin:@typescript-eslint/recommended',
         'plugin:vue/vue3-recommended',
         '@vue/airbnb',
-        'prettier'
+        'prettier',
     ],
     rules: {
         'no-console': process.env.NODE_ENV === 'production' ? 'off' : 'warn',
         'no-debugger': 'off',
         'vue/no-deprecated-slot-attribute': 'off',
-        "import/extensions": [ 2, {
-            'js': "always",
-            'vue': "always",
-            'ts': "never",
-          }],
+        'vue/html-closing-bracket-newline': ['error', { singleline: 'never', multiline: 'never' }],
+        'import/extensions': [
+            2,
+            {
+                js: 'always',
+                vue: 'always',
+                ts: 'never',
+            },
+        ],
     },
     parserOptions: {
-        parser: "@typescript-eslint/parser"
+        parser: '@typescript-eslint/parser',
     },
 };
