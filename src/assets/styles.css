@@ -1,3 +1,6 @@
+.native-input {
+    padding-left: 1rem !important;
+}
 .header {
     @apply flex justify-between items-center pt-9 pr-4;
 }
@@ -41,4 +44,7 @@
 	.responsive {
 		display: none !important;
 	}
+    .div-center {
+        @apply h-screen flex flex-col justify-center;
+    }
 }

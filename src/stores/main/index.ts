@@ -1,12 +1,14 @@
+/* eslint-disable import/no-unresolved */
 import { defineStore } from 'pinia';
 
-// eslint-disable-next-line import/no-unresolved
 import { task as taskType } from 'modules/TaskType';
+
+import openToast from '../../core/Toast';
 
 const useStore = defineStore('main', {
     state: () => ({
         tasks: [
-            // { id: '1', name: 'Task 1', priority: 1 },
+            { id: '', name: '', priority: 0 },
             // { id: '2', name: 'Task 2', priority: 2 },
             // { id: '3', name: 'Task 3', priority: 3 },
             // { id: '4', name: 'Task 4', priority: 2 },
@@ -17,13 +19,13 @@ const useStore = defineStore('main', {
     actions: {
         setTasks() {
             const localTasks: string | null = localStorage.getItem('tasks')
-            this.tasks = JSON.parse(localTasks);
+            this.tasks = localTasks !== null ? JSON.parse(localTasks) : [];
         },
         addTask(newTask: taskType ) {
             const task = {...newTask };
             task.id = `${ this.tasks.length }`;
             this.tasks.push(task);
-            this.updatedLocalTasks();
+            this.updatedLocalTasks(`${ task.name } added`);
         },
         removeTask(id: string) {
             let taskIndex = 0;
@@ -34,14 +36,16 @@ const useStore = defineStore('main', {
                 }
                 return true;
             });
+            const task = {...this.tasks[taskIndex] };
             this.tasks.splice(taskIndex, 1);
-            this.updatedLocalTasks();
+            this.updatedLocalTasks(`${ task.name } removed`, 'danger');
         },
         completeAll() {
             this.tasks.splice(0, this.tasks.length);
-            this.updatedLocalTasks();
+            this.updatedLocalTasks(`All tasks completed!`);
         },
-        updatedLocalTasks() {
+        updatedLocalTasks( msg: string, color = 'primary') {
+            openToast(msg, color)
             localStorage.setItem('tasks', JSON.stringify(this.tasks));
         }
     },

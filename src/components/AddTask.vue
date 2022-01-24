@@ -50,7 +50,7 @@ const addNewTask = () => {
             </ion-radio-group>
         </ion-list>
 
-        <ion-button class="col-md-6 col-11 mt-3 px-3" mode="ios" shape="round" @click="addNewTask()">
+        <ion-button class="col-md-6 col-11 mt-4 px-3" mode="ios" shape="round" @click="addNewTask()">
             <i class="material-icons">add</i>
             <span class="ml-2">Add Task</span>
         </ion-button>

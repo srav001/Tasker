@@ -27,7 +27,7 @@
         "src/**/*.d.ts",
         "src/**/*.tsx",
         "src/**/*.vue"
-    ],
+, "src/core/Toast.ts"    ],
     "exclude": [
         "node_modules"
     ],
