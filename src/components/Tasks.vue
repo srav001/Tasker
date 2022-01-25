@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { withDefaults, defineProps } from 'vue';
+import { withDefaults } from 'vue';
 import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton } from "@ionic/vue";
 // eslint-disable-next-line import/no-unresolved
 import { task as taskType } from 'modules/TaskType';
@@ -11,6 +11,7 @@ interface Props {
     task: taskType
 };
 
+// eslint-disable-next-line no-undef
 const props = withDefaults(defineProps<Props>(), {
     sl: 1
 });

@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { IonApp, IonRouterOutlet } from '@ionic/vue';
+// eslint-disable-next-line import/no-unresolved
+import Home from 'views/Home.vue';
 </script>
 
 <template>
-    <ion-app>
-        <ion-router-outlet />
-    </ion-app>
+    <home></home>
 </template>
 
 <style lang="postcss">

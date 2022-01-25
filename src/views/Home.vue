@@ -27,17 +27,16 @@ const tasks = computed(() => mainStore.getTasks);
 <template>
     <base-view id="home-page">
         <template #header>
-            <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+            <ion-fab class="visibele md:invisible" slot="fixed" vertical="bottom" horizontal="end">
                 <ion-fab-button color="dark" @click="isOpen = true">
                     <i class="material-icons">add</i>
                 </ion-fab-button>
             </ion-fab>
             <!-- HEADER -->
-            <div class="header">
-                <div class="text-left pl-8">
-                    <b style="font-size: 3rem;">To-Do</b>
-                </div>
+            <div class="text-center header">
+                <b class="pl-8" style="font-size: 3rem;">To-Do</b>
                 <ion-button
+                    class="float-right"
                     v-if="tasks.length > 1"
                     mode="ios"
                     shape="round"

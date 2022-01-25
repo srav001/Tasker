@@ -6,6 +6,7 @@
     "scripts": {
         "dev": "vite",
         "build": "vue-tsc --noEmit && vite build",
+        "build-web": "vite build",
         "preview": "vite preview",
         "test": "echo \"Error: no test specified\" && exit 1",
         "setup": "npm i && npx husky install && npx husky add .husky/commit-msg 'npx --no -- commitlint --verbose --edit $1' ",
@@ -23,17 +24,17 @@
     },
     "homepage": "https://github.com/srav001/To-Do#readme",
     "dependencies": {
+        "@capacitor/android": "^3.4.0",
         "@capacitor/app": "1.0.7",
-        "@capacitor/core": "3.3.3",
+        "@capacitor/core": "^3.4.0",
         "@capacitor/haptics": "1.1.3",
         "@capacitor/keyboard": "1.2.0",
         "@capacitor/status-bar": "1.0.6",
         "@ionic/vue": "^6.0.1",
-        "@ionic/vue-router": "^6.0.1",
         "bootstrap": "^5.1.3",
         "material-design-icons": "^3.0.1",
         "pinia": "^2.0.7",
-        "vue": "^3.2.26",
+        "vue": "^3.2.29",
         "vue-router": "^4.0.12"
     },
     "devDependencies": {
@@ -54,6 +55,7 @@
         "postcss": "^8.4.5",
         "prettier": "^2.5.1",
         "tailwindcss": "^3.0.7",
+        "typescript": "^4.5.5",
         "vite": "^2.7.2",
         "vue-tsc": "^0.29.8"
     }

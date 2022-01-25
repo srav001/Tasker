@@ -2,7 +2,7 @@
     padding-left: 1rem !important;
 }
 .header {
-    @apply flex justify-between items-center pt-9 pr-4;
+    @apply items-center pt-9 pr-4;
 }
 
 .high {
@@ -46,5 +46,8 @@
 	}
     .div-center {
         @apply h-screen flex flex-col justify-center;
+    }
+    .header {
+        @apply flex justify-between items-center pt-9 pr-4;
     }
 }
