@@ -3,7 +3,7 @@
 import Home from 'views/Home.vue';
 </script>
 
-<template>
+<template>  
     <home></home>
 </template>
 

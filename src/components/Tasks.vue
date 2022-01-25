@@ -39,14 +39,14 @@ const mainStore = useStore();
                 <ion-button 
                     color="danger" shape="round" 
                     fill="outline" mode="ios"
-                    @click="mainStore.removeTask(props.task.id)">
+                    @click="mainStore.removeTask(props.task)">
                     <i class="material-icons">delete</i>
                     <span class="responsive md:pl-2">Delete</span>
                 </ion-button>
                 <ion-button 
                     class="ml-2" color="primary" 
                     shape="round" mode="ios" fill="outline"
-                    @click="mainStore.removeTask(props.task.id)">
+                    @click="mainStore.removeTask(props.task)">
                     <i class="material-icons">done</i>
                     <span class="responsive md:pl-2">Done</span>
                 </ion-button>
