@@ -4,9 +4,9 @@ import { IonContent, IonPage } from '@ionic/vue';
 
 <template>
     <ion-page>
-        <slot name="title"></slot>
+        <slot name="header"></slot>
         <ion-content>
-            <slot name="header"></slot>
+            <slot name="body"></slot>
         </ion-content>
     </ion-page>
 </template>

@@ -1,0 +1,53 @@
+.native-input {
+    padding-left: 1rem !important;
+}
+.header {
+    @apply items-center pt-9 pr-4;
+}
+
+.task-card {
+    @apply p-2 shadow-lg rounded-2xl border-l-2 md:border-l-4;
+
+    &.task-card-body {
+        @apply pt-1 pb-2;
+    }
+
+    &.high {
+        @apply border-red-500;
+    }
+    &.medium {
+        @apply border-yellow-500;
+    }
+    &.low {
+        @apply border-blue-500;
+    }
+}
+
+.add-new-task {
+    @apply flex flex-col items-center mt-3 my-5;
+}
+
+.task-input {
+    @apply mx-4 mb-3 rounded-2xl;
+}
+.task-input-2 {
+    width: 85% !important;
+    @apply mt-5 mb-4 rounded-2xl border border-opacity-50;
+    @apply active:border-cyan-400 hover:border-cyan-400;
+}
+
+.priority-list {
+    @apply rounded-2xl;
+}
+
+@media screen and (max-width: 600px) {
+    .responsive {
+        display: none !important;
+    }
+    .div-center {
+        @apply h-screen flex flex-col justify-center;
+    }
+    .header {
+        @apply flex justify-between items-center pt-9 pr-4;
+    }
+}

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { withDefaults, defineProps } from 'vue';
+import { withDefaults } from 'vue';
 import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton } from "@ionic/vue";
 // eslint-disable-next-line import/no-unresolved
 import { task as taskType } from 'modules/TaskType';
@@ -11,6 +11,7 @@ interface Props {
     task: taskType
 };
 
+// eslint-disable-next-line no-undef
 const props = withDefaults(defineProps<Props>(), {
     sl: 1
 });
@@ -38,14 +39,14 @@ const mainStore = useStore();
                 <ion-button 
                     color="danger" shape="round" 
                     fill="outline" mode="ios"
-                    @click="mainStore.removeTask(props.task.id)">
+                    @click="mainStore.removeTask(props.task)">
                     <i class="material-icons">delete</i>
                     <span class="responsive md:pl-2">Delete</span>
                 </ion-button>
                 <ion-button 
                     class="ml-2" color="primary" 
                     shape="round" mode="ios" fill="outline"
-                    @click="mainStore.removeTask(props.task.id)">
+                    @click="mainStore.removeTask(props.task)">
                     <i class="material-icons">done</i>
                     <span class="responsive md:pl-2">Done</span>
                 </ion-button>

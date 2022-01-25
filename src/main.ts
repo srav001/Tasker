@@ -5,8 +5,6 @@ import { createPinia } from 'pinia';
 import { IonicVue } from '@ionic/vue';
 
 import App from './App.vue';
-// eslint-disable-next-line
-import router from './router';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/vue/css/core.css';
@@ -20,8 +18,6 @@ import './theme/variables.css';
 /* Import the tailwaind files */
 import '../index.css';
 
-const app = createApp(App).use(createPinia()).use(IonicVue).use(router);
+const app = createApp(App).use(createPinia()).use(IonicVue);
 
-router.isReady().then(() => {
-    app.mount('#app');
-});
+app.mount('#app');
