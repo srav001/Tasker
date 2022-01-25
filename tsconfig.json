@@ -17,6 +17,7 @@
             "assets/*": ["/assets/*"],
             "components/*": ["/components/*"],
             "core/*": ["/core/*"],
+            "db/*": ["/db/*"],
             "stores/*": ["/stores/*"],
             "views/*": ["/views/*"]
         }

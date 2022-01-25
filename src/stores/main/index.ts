@@ -3,6 +3,8 @@ import { defineStore } from 'pinia';
 
 import { task as taskType } from 'modules/TaskType';
 
+import db from 'db';
+
 import openToast from '../../core/Toast';
 
 const useStore = defineStore('main', {
@@ -33,6 +35,9 @@ const useStore = defineStore('main', {
             openToast(msg, color);
             localStorage.setItem('tasksObj', JSON.stringify(this.tasksObj));
         },
+        async getTasksFromDb() {
+            // Do nothing for now
+        }
     },
     getters: {
         getTasks: (state) => {

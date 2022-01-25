@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /* eslint import/no-unresolved: [2, { ignore: ['\.vue$'] }] */
-import { onMounted, computed, ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import { IonFab, IonFabButton, IonButton, IonModal, IonContent } from "@ionic/vue";
 
@@ -14,9 +14,7 @@ import useStore from '../stores/main';
 
 const mainStore = useStore();
 
-onMounted(() => {
-    mainStore.setTasks();
-});
+mainStore.setTasks();
 
 const isOpen = ref(false);
 
@@ -26,8 +24,8 @@ const tasks = computed(() => mainStore.getTasks);
 
 <template>
     <base-view id="home-page">
-        <template #header>
-            <ion-fab class="visibele md:invisible" slot="fixed" vertical="bottom" horizontal="end">
+        <template #body>
+            <ion-fab slot="fixed" class="visibele md:invisible" vertical="bottom" horizontal="end">
                 <ion-fab-button color="dark" @click="isOpen = true">
                     <i class="material-icons">add</i>
                 </ion-fab-button>
@@ -36,8 +34,8 @@ const tasks = computed(() => mainStore.getTasks);
             <div class="text-center header">
                 <b class="pl-8" style="font-size: 3rem;">To-Do</b>
                 <ion-button
-                    class="float-right"
                     v-if="tasks.length > 1"
+                    class="float-right"
                     mode="ios"
                     shape="round"
                     fill="outline"
