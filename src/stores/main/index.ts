@@ -1,27 +1,78 @@
 /* eslint-disable import/no-unresolved */
 import { defineStore } from 'pinia';
 
+import services from 'services';
+
 import { task as taskType } from 'modules/TaskType';
 
-import db from 'db';
-
-import openToast from '../../core/Toast';
+import openToast from 'core/Toast';
 
 const useStore = defineStore('main', {
     state: () => ({
         tasksObj: Object.create({}),
+        userId: 1
     }),
     actions: {
-        setTasks() {
-            const localTasks: string | null = localStorage.getItem('tasksObj');
-            this.tasksObj = localTasks !== null ? JSON.parse(localTasks) : {};
+        async getTasks() {
+            const tasksObj: string | null = localStorage.getItem('tasksObj');
+            this.tasksObj = tasksObj !== null ? JSON.parse(tasksObj) : {};
+            await this.getTasksFromDb();
         },
-        addTask(newTask: taskType) {
+        async getTasksFromDb() {
+            const tasksData = await services.select('tasks', 'fetching tasks');
+            const tasksObj = { ...tasksData[0]?.tasks }
+            this.tasksObj = tasksObj !== null ? tasksObj : {};
+        },
+
+        updatedLocalTasks(msg: string, color = 'primary') {
+            openToast(msg, color);
+            localStorage.setItem('tasksObj', JSON.stringify(this.tasksObj));
+        },
+        updateTasksInDb( value: { id: number, tasks: Record<string, unknown>}, userId: number ) {
+            return new Promise<any[] | string>(async (resolve, reject) => {
+                const tasks = await services.update('tasks', value, { userId }, 'updating tasks');
+                if ( tasks ) resolve(tasks);
+                else reject(new Error('Task creation failed'));
+            })
+        },
+
+        async addTask(newTask: taskType) {
+
             const task = { ...newTask };
             task.id = Math.random().toString(36).substring(2);
-            this.tasksObj[task.id] = task;
-            this.updatedLocalTasks(`${task.name} added`);
+
+            const tasksForUpdating = { ...this.tasksObj };
+            tasksForUpdating[task.id] = task;
+
+            if( this.getTasksInOrderByPriority.length > 0 )
+                this.updateTasksInDb({ id: 1, tasks: tasksForUpdating }, this.userId)
+                .then(() => { 
+                    this.tasksObj[task.id] = task;
+                    this.updatedLocalTasks(`${task.name} added`);
+                });
+                // .catch(() => {
+                //     delete this.tasksObj[task.id];
+                // });
+            else { 
+                this.addTasksInDb({
+                    id: 1,
+                    tasks: tasksForUpdating,
+                    userId: this.userId
+                })
+                .then(() => { 
+                    this.tasksObj[task.id] = task;
+                    this.updatedLocalTasks(`${task.name} added`);
+                });
+            }
         },
+        addTasksInDb(value: { id: number; tasks: Record<string, unknown>; userId: number; }) {
+            return new Promise<any[] | string | null>(async (resolve, reject) => {
+                const tasks = await services.insert('tasks', [ value ], 'creating tasks');
+                if ( tasks?.length > 0 ) resolve(tasks);
+                else reject(new Error('Task creation failed'));
+            })
+        },
+
         removeTask(task: taskType) {
             const taskName = task.name;
             delete this.tasksObj[task.id];
@@ -30,17 +81,10 @@ const useStore = defineStore('main', {
         completeAll() {
             this.tasksObj = {};
             this.updatedLocalTasks(`All tasks completed!`);
-        },
-        updatedLocalTasks(msg: string, color = 'primary') {
-            openToast(msg, color);
-            localStorage.setItem('tasksObj', JSON.stringify(this.tasksObj));
-        },
-        async getTasksFromDb() {
-            // Do nothing for now
         }
     },
     getters: {
-        getTasks: (state) => {
+        getTasksInOrderByPriority: (state) => {
             if (Object.keys(state.tasksObj).length > 0) {
                 // const tasks: taskType[] = Object.entries(state.tasksObj).map((task) => task['1']);
                 // tasks array type warning occuring

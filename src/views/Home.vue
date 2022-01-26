@@ -14,11 +14,11 @@ import useStore from '../stores/main';
 
 const mainStore = useStore();
 
-mainStore.setTasks();
+mainStore.getTasks();
 
 const isOpen = ref(false);
 
-const tasks = computed(() => mainStore.getTasks);
+const tasks = computed(() => mainStore.getTasksInOrderByPriority);
 
 </script>
 
