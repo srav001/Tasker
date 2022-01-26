@@ -1,16 +1,15 @@
 <script setup lang="ts">
-/* eslint import/no-unresolved: [2, { ignore: ['\.vue$'] }] */
 import { computed, ref } from 'vue';
 
 import { IonFab, IonFabButton, IonButton, IonModal, IonContent } from "@ionic/vue";
 
 import BaseView from 'core/BaseView.vue';
 
-import Tasks from 'components/Tasks.vue';
+import TaskCard from 'components/TaskCard.vue';
 
 import AddTask from 'components/AddTask.vue';
-// eslint-disable-next-line import/no-unresolved
-import useStore from '../stores/main';
+
+import useStore from 'stores/main';
 
 const mainStore = useStore();
 
@@ -65,7 +64,7 @@ const tasks = computed(() => mainStore.getTasksInOrderByPriority);
                     v-for="(task, taskIndex) in tasks"
                     :key="taskIndex"
                     class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12">
-                    <tasks :key="taskIndex" :sl="taskIndex + 1" :task="task"></tasks>
+                    <task-card :key="taskIndex" :sl="taskIndex + 1" :task="task"></task-card>
                 </div>
                 <p v-if="tasks.length === 0" class="text-center text-xl text-gray-500 py-5 mt-11">No tasks to do!</p>
             </div>

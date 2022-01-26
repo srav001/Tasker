@@ -23,6 +23,11 @@ module.exports = {
             },
         ],
     },
+    settings: {
+        'import/resolver': {
+            'typescript': {}
+        },
+    },
     parserOptions: {
         parser: '@typescript-eslint/parser',
     },

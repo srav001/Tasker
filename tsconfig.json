@@ -14,12 +14,12 @@
         ],
         "baseUrl": "./src/",
         "paths": {
-            "assets/*": ["/assets/*"],
-            "components/*": ["/components/*"],
-            "core/*": ["/core/*"],
-            "services/*": ["/services/*"],
-            "stores/*": ["/stores/*"],
-            "views/*": ["/views/*"]
+            "assets/*": ["assets/*"],
+            "components/*": ["components/*"],
+            "core/*": ["core/*"],
+            "services/*": ["services/*"],
+            "stores/*": ["stores/*"],
+            "views/*": ["views/*"]
         }
     },
     "include": [

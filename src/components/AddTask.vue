@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { reactive } from 'vue';
-// eslint-disable-next-line import/no-unresolved
+
 import { task as taskType } from 'modules/TaskType';
 
 import { IonButton, IonInput, IonList, IonItem, IonLabel, IonRadio, IonRadioGroup, IonListHeader } from '@ionic/vue';
-// eslint-disable-next-line import/no-unresolved
+
 import useStore from '../stores/main';
 
 const mainStore = useStore();

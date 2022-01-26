@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// eslint-disable-next-line import/no-unresolved
 import Home from 'views/Home.vue';
 </script>
 

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import { defineStore } from 'pinia';
 
 import services from 'services';
@@ -13,14 +12,15 @@ const useStore = defineStore('main', {
         userId: 1
     }),
     actions: {
-        async getTasks() {
+        getTasks() {
             const tasksObj: string | null = localStorage.getItem('tasksObj');
             this.tasksObj = tasksObj !== null ? JSON.parse(tasksObj) : {};
-            await this.getTasksFromDb();
+            this.getTasksFromDb();
         },
         async getTasksFromDb() {
             const tasksData = await services.select('tasks', 'fetching tasks');
-            const tasksObj = { ...tasksData[0]?.tasks }
+            let tasksObj = {};
+            if ( tasksData !== null ) tasksObj = { ...tasksData[0]?.tasks }
             this.tasksObj = tasksObj !== null ? tasksObj : {};
         },
 
@@ -29,11 +29,8 @@ const useStore = defineStore('main', {
             localStorage.setItem('tasksObj', JSON.stringify(this.tasksObj));
         },
         updateTasksInDb( value: { id: number, tasks: Record<string, unknown>}, userId: number ) {
-            return new Promise<any[] | string>(async (resolve, reject) => {
-                const tasks = await services.update('tasks', value, { userId }, 'updating tasks');
-                if ( tasks ) resolve(tasks);
-                else reject(new Error('Task creation failed'));
-            })
+            const update = services.update('tasks', value, { userId }, 'updating tasks');
+            return Promise.resolve(update);
         },
 
         async addTask(newTask: taskType) {
@@ -66,11 +63,8 @@ const useStore = defineStore('main', {
             }
         },
         addTasksInDb(value: { id: number; tasks: Record<string, unknown>; userId: number; }) {
-            return new Promise<any[] | string | null>(async (resolve, reject) => {
-                const tasks = await services.insert('tasks', [ value ], 'creating tasks');
-                if ( tasks?.length > 0 ) resolve(tasks);
-                else reject(new Error('Task creation failed'));
-            })
+            const add = services.insert('tasks', [ value ], 'creating tasks');
+            return Promise.resolve(add)
         },
 
         removeTask(task: taskType) {
