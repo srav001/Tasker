@@ -1,5 +1,5 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-// eslint-disable-next-line import/no-unresolved
+
 import { configType } from 'modules/DbConfigType';
 
 const config: configType = {

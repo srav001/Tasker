@@ -5,7 +5,7 @@ import { task as taskType } from 'modules/TaskType';
 
 import { IonButton, IonInput, IonList, IonItem, IonLabel, IonRadio, IonRadioGroup, IonListHeader } from '@ionic/vue';
 
-import useStore from '../stores/main';
+import useStore from 'stores/main';
 
 const mainStore = useStore();
 

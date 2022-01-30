@@ -12,16 +12,26 @@ const useStore = defineStore('main', {
         userId: 1
     }),
     actions: {
-        getTasks() {
-            const tasksObj: string | null = localStorage.getItem('tasksObj');
-            this.tasksObj = tasksObj !== null ? JSON.parse(tasksObj) : {};
-            this.getTasksFromDb();
+        async getTasks() {
+            // eslint-disable-next-line no-async-promise-executor
+            return new Promise(async(resolve) => {
+                let tasksFetched = false;
+                const tasksAsString: string | null = localStorage.getItem('tasksObj');
+                if ( tasksAsString !== null && tasksAsString !== '{}' ) {
+                    this.tasksObj = JSON.parse(tasksAsString);
+                    tasksFetched = true;
+                } else {
+                    tasksFetched = await this.getTasksFromDb();
+                }
+                resolve(tasksFetched);
+            });
         },
         async getTasksFromDb() {
             const tasksData = await services.select('tasks', 'fetching tasks');
             let tasksObj = {};
             if ( tasksData !== null ) tasksObj = { ...tasksData[0]?.tasks }
             this.tasksObj = tasksObj !== null ? tasksObj : {};
+            return true;
         },
 
         updatedLocalTasks(msg: string, color = 'primary') {
@@ -70,11 +80,18 @@ const useStore = defineStore('main', {
         removeTask(task: taskType) {
             const taskName = task.name;
             delete this.tasksObj[task.id];
-            this.updatedLocalTasks(`${taskName} removed`, 'danger');
+            const tasksToUpdate = {...this.tasksObj };
+            this.updateTasksInDb({ id: 1, tasks: tasksToUpdate }, this.userId)
+            .then(() => { 
+                this.updatedLocalTasks(`${taskName} removed`, 'danger');
+            });
         },
         completeAll() {
             this.tasksObj = {};
-            this.updatedLocalTasks(`All tasks completed!`);
+            this.updateTasksInDb({ id: 1, tasks: {} }, this.userId)
+            .then(() => { 
+                this.updatedLocalTasks(`All tasks completed!`);
+            });  
         }
     },
     getters: {

@@ -4,6 +4,9 @@
 .header {
     @apply items-center pt-9 pr-4;
 }
+.no-tasks-found {
+    @apply text-center text-xl text-gray-500 py-5 mt-11;
+}
 
 .task-card {
     @apply p-2 shadow-lg rounded-2xl border-l-2 md:border-l-4;

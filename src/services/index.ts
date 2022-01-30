@@ -1,13 +1,10 @@
-/* eslint-disable import/no-unresolved */
-
 import openToast from 'core/Toast';
 
 import db from './db';
 
 const dbConnector = db;
 
-// eslint-disable-next-line no-unused-vars
-const handleError = (msg: string, error?: []) => {
+const handleError = (msg: string) => {
     openToast(msg, 'danger');
 };
 

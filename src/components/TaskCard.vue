@@ -5,7 +5,7 @@ import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton } from 
 
 import { task as taskType } from 'modules/TaskType';
 
-import useStore from '../stores/main';
+import useStore from 'stores/main';
 
 interface Props {
     sl: number,
