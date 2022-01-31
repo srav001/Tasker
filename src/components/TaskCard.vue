@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { withDefaults } from 'vue';
+
 import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonButton } from "@ionic/vue";
-// eslint-disable-next-line import/no-unresolved
+
 import { task as taskType } from 'modules/TaskType';
-// eslint-disable-next-line import/no-unresolved
-import useStore from '../stores/main';
+
+import useStore from 'stores/main';
 
 interface Props {
     sl: number,
